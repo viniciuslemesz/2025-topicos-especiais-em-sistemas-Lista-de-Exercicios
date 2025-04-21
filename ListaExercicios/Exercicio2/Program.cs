@@ -1,27 +1,22 @@
-﻿using System;
+﻿// Tabuada Completa com Laço
+//Solicite ao usuário um número e imprima a tabuada completa dele (de 1 a 10),
+//utilizando um for.
+using System;
 
-class Exercicio2
+public class Exercicio1
 {
-static void Main(string[] args)
-{
-
-Console.WriteLine("Digite dois numeros inteiros: ");
-int num1 = int.Parse(Console.ReadLine());
-int num2 = int.Parse(Console.ReadLine());
-
-if(num1 > num2){
-Console.WriteLine("O segundo numero eh menor que o primeiro.");
-}
-else if(num2 > num1)
-{
-    Console.WriteLine("O primeiro numero eh menor que o segundo.");
-}
-else
-{
-Console.WriteLine("Os numeros sao iguais.");
-}
-
-
-}
-
+    public static void Main(string[] args)
+    {
+       int numero;
+       
+       Console.Write("Digite um numero: ");
+       numero = int.Parse(Console.ReadLine());
+   
+   for(int i=1;i<=10;i++)
+   {
+       Console.WriteLine(numero + "x" + i + "= " + numero*i);
+   }
+   
+        
+    }
 }
