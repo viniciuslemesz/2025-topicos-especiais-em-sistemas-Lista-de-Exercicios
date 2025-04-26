@@ -4,62 +4,75 @@ public class Exercicio1
 {
     public static void Main(string[] args)
     {
+        // Declarando variaveis a serem usadas.
+        // Usando tipo bool para verificação, inicializando com false e alterando para true caso contenha as condições requisitadas
         string senha;
-        bool temTamanhoMinimo = false;
-        bool temMaiuscula = false;
-        bool temNumero = false;
-        bool temEspecial = false;
+        bool verificarTamanho = false;
+        bool verificarMaiuscula = false;
+        bool verificarNumero = false;
+        bool verificarCaracterEspecial = false;
 
+        Console.WriteLine("---CADASTRO DE SENHA---");
         Console.Write("Digite uma senha: ");
-        senha = Console.ReadLine();
+        // Lendo a mensagem e armazenando em uma variavel 'senha'
+        senha = Console.ReadLine(); 
 
-        if (senha.Length >= 8)
+        // verificando se mensagem armazenada na variavel 'senha' possui pelo menos 8 caracteres, caso seja verdade a variavel verificarTamanho se torna "true".
+        if (senha.Length > 7)
         {
-            temTamanhoMinimo = true;
+            verificarTamanho = true;
         }
 
+
+// Utilizando o tamanho(Length) da variavel 'senha' para percorrer a quantidade de caracteres existente
+// i como contador
         for (int i = 0; i < senha.Length; i++)
+{
+    
+    //Colocando cada caracter da posição atual da variavel 'senha' dentro de uma variavel 'caracter' para que assim seja feita as verificações em cada caracter individualmente
+    char caracter = senha[i];
+
+    if (char.IsUpper(caracter))
+    {
+        verificarMaiuscula = true;
+    }
+
+    if (char.IsDigit(caracter))
+    {
+        verificarNumero = true;
+    }
+
+    if ("!@#$%¨&*".Contains(caracter))
+    {
+        verificarCaracterEspecial = true;
+    }
+}
+
+        // Condicional verifica se as variaveis para verificação são verdadeiras, por ser do tipo boolean estou verificando se é true (caso a verificação fosse para false adicionaria o '!' antes da variavel)
+        if (verificarTamanho && verificarMaiuscula && verificarNumero && verificarCaracterEspecial)
         {
-            char c = senha[i];
-
-            if (c >= 'A' && c <= 'Z')
-            {
-                temMaiuscula = true;
-            }
-
-            if (c >= '0' && c <= '9')
-            {
-                temNumero = true;
-            }
-
-            if (c == '@' || c == '!' || c == '#')
-            {
-                temEspecial = true;
-            }
-        }
-
-        if (temTamanhoMinimo && temMaiuscula && temNumero && temEspecial)
-        {
-            Console.WriteLine("Senha forte!");
+            Console.WriteLine("/-------/\nSenha forte cadastrada.");
         }
         else
         {
-            Console.WriteLine("Senha fraca. Ela deve conter:");
-            if (!temTamanhoMinimo)
+            // else para uma mensagem fora das condições do if
+            Console.WriteLine("/-------/\nSenha fraca, deve conter:");
+            // uso do '!' antes das variaveis do tipo boolean para verificar se são falsas, informando mensagens especificas.
+            if (!verificarTamanho)
             {
-                Console.WriteLine("- Pelo menos 8 caracteres");
+                Console.WriteLine("- 8 caracteres");
             }
-            if (!temMaiuscula)
+            if (!verificarMaiuscula)
             {
-                Console.WriteLine("- Pelo menos uma letra maiúscula");
+                Console.WriteLine("- Letra maiuscula");
             }
-            if (!temNumero)
+            if (!verificarNumero)
             {
-                Console.WriteLine("- Pelo menos um número");
+                Console.WriteLine("- Numero");
             }
-            if (!temEspecial)
+            if (!verificarCaracterEspecial)
             {
-                Console.WriteLine("- Pelo menos um caractere especial (@, !, #)");
+                Console.WriteLine("- Caractere especial");
             }
         }
     }
